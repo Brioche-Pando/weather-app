@@ -21,6 +21,8 @@ function Weathers() {
         <Fragment>
             <Text>Retour API :</Text>
             <Text>Nom ville recherchée : {query.data?.city_info.name}</Text>
+            
+            {/* TextInput à ajouter pour avoir une recherche / interaction avec l'api */}
         </Fragment>
     )
 }
