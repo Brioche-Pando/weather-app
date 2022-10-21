@@ -1,5 +1,5 @@
 const getWeather = async () => {
-    return await fetch("https://prevision-meteo.ch/services/json/nantes")
+    return await fetch("https://weather-api.mathisbarre.com/nantes")
         .then(res => res.json())
         .then(
             (result) => {

@@ -6,7 +6,7 @@ export default function SettingsScreen() {
     return (
         <SafeAreaView style={styles.container}>
             <Text style={styles.instructions}>
-                Settings
+                CREDIT
             </Text>
         </SafeAreaView>
     );

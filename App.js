@@ -1,7 +1,7 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import React from 'react';
-import BottomNav from './components/BottomNav';
+import { NavigationContainer } from '@react-navigation/native'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import React from 'react'
+import BottomNav from './navigation/AppTabs'
 
 
 export default function App() {
@@ -13,5 +13,5 @@ export default function App() {
         <BottomNav />
       </QueryClientProvider>
     </NavigationContainer>
-  );
+  )
 }
