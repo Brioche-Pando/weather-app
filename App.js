@@ -1,7 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import React from 'react'
-import BottomNav from './navigation/AppTabs'
+import AppTabs from './navigation/AppTabs'
 
 
 export default function App() {
@@ -10,7 +10,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <QueryClientProvider client={queryClient}>
-        <BottomNav />
+        <AppTabs />
       </QueryClientProvider>
     </NavigationContainer>
   )
