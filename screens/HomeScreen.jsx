@@ -1,13 +1,15 @@
 import React, { Fragment } from 'react'
 import { StyleSheet, SafeAreaView, View, Image, Text, ScrollView, ActivityIndicator } from 'react-native'
-
-import {
-    useQuery,
-} from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 import getWeather from '../api/WeatherApi'
-import WeatherInfos from '../components/WeatherInfos';
+import WeatherInfos from '../components/WeatherInfos'
 
-export default function HomeStack() {
+import windIcon from '../assets/icons/wind.png'
+import humidityIcon from '../assets/icons/humidity.png'
+import rainIcon from '../assets/icons/rain.png'
+import sunIcon from '../assets/icons/sun.png'
+
+export default function HomeSreen() {
     return (
         <SafeAreaView style={styles.container}>
             <Weathers />
@@ -16,67 +18,58 @@ export default function HomeStack() {
 }
 
 function Weathers() {
-    // Queries
-    const { data, isLoading, isError } = useQuery(['weather'], getWeather)
-    console.log(data);
+    const { data, isLoading, isError } = useQuery({ queryFn: () => getWeather('nantes'), queryKey: ['weatherCall'], queryKey: ['nantes'] })
+
     return (
         <ScrollView>
             {isLoading ? <ActivityIndicator /> : isError ? <Text>ERROR</Text> : (
                 <Fragment>
-                    <View>
-                        <Text>Météo de Nantes</Text>
-                        <View>
+                    <View style={styles.header}>
+                        <View style={{ marginBottom: 25, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                             <Image
-                                style={styles.currentConditionBigIcon}
                                 source={{
-                                    uri: data.currentConditions.iconBig
+                                    uri: data.currentConditions.iconBig,
+                                    width: 85,
+                                    height: 85
                                 }}
                             />
-                            <View>
-                                <Text>Actuellement</Text>
-                                <Text>{data.currentConditions.temperature.value}{data.currentConditions.temperature.unit}</Text>
+                            <View style={{ marginLeft: 25 }}>
+                                <Text style={{ color: '#fff', fontSize: 20 }}>Actuellement</Text>
+                                <Text style={{ color: '#fff', fontSize: 32 }}>{data.currentConditions.temperature.value}{data.currentConditions.temperature.unit}</Text>
                             </View>
                         </View>
-                        <View>
-                            <View>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
+                            <View style={{ alignItems: 'center' }}>
                                 <Image
                                     style={styles.currentConditionIcon}
-                                    source={{
-                                        uri: '../assets/icons/wind'
-                                    }}
+                                    source={windIcon}
                                 />
-                                <Text>{data.currentConditions.windSpeed.value}{data.currentConditions.windSpeed.unit}</Text>
-                                <Text>Vent</Text>
+                                <Text style={{ color: '#fff', fontSize: 16 }}>{data.currentConditions.windSpeed.value} {data.currentConditions.windSpeed.unit}</Text>
+                                <Text style={{ color: '#cacbcf', fontSize: 12 }}>Vent</Text>
                             </View>
-                            <View>
+                            <View style={{ alignItems: 'center' }}>
                                 <Image
                                     style={styles.currentConditionIcon}
-                                    source={{
-                                        uri: '../assets/icons/humidity'
-                                    }}
+                                    source={humidityIcon}
                                 />
-                                <Text>{data.currentConditions.humidity.value}{data.currentConditions.humidity.unit}</Text>
-                                <Text>Humidité</Text>
+                                <Text style={{ color: '#fff', fontSize: 16 }}>{data.currentConditions.humidity.value} {data.currentConditions.humidity.unit}</Text>
+                                <Text style={{ color: '#cacbcf', fontSize: 12 }}>Humidité</Text>
                             </View>
-                            <View>
+                            <View style={{ alignItems: 'center' }}>
                                 <Image
                                     style={styles.currentConditionIcon}
-                                    source={{
-                                        uri: '../assets/icons/rain'
-                                    }}
+                                    source={rainIcon}
                                 />
-                                <Text>XX %</Text>
-                                <Text>Pluie</Text>
+                                <Text style={{ color: '#fff', fontSize: 16 }}>XX %</Text>
+                                <Text style={{ color: '#cacbcf', fontSize: 12 }}>Pluie</Text>
                             </View>
-                            <View>
+                            <View style={{ alignItems: 'center' }}>
                                 <Image
                                     style={styles.currentConditionIcon}
-                                    source={{
-                                        uri: '../assets/icons/sun'
-                                    }}
+                                    source={sunIcon}
                                 />
-                                <Text>XX %</Text>
-                                <Text>UV</Text>
+                                <Text style={{ color: '#fff', fontSize: 16 }}>XX %</Text>
+                                <Text style={{ color: '#cacbcf', fontSize: 12 }}>UV</Text>
                             </View>
                         </View>
                     </View>
@@ -93,40 +86,24 @@ function Weathers() {
     )
 }
 
-// function DayPreview(props) {
-//     return (
-//         <View style={styles.dayPreview}>
-//             <Link to={{ screen: 'WeatherScreen', params: { hourly: props.hourly } }}>
-//                 <Text>{props.date}</Text>
-//                 <View style={{ flexDirection: 'row' }}>
-//                     <Image
-//                         style={styles.dayPreviewIcon}
-//                         source={{
-//                             uri: props.icon
-//                         }}
-//                     />
-//                     <Text>{props.condition}</Text>
-//                 </View>
-//                 <Text>max. {props.temperature.max}{props.temperature.unit}</Text>
-//             </Link>
-//         </View>
-//     )
-// }
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#121521',
         justifyContent: 'center'
     },
-    currentConditionBigIcon: {
-        with: 100,
-        height: 100,
-        resizeMode: 'contain'
+    header: {
+        backgroundColor: '#2b334f',
+        marginBottom: 25,
+        paddingTop: 75,
+        paddingBottom: 35,
+        borderBottomRightRadius: 30,
+        borderBottomLeftRadius: 30
     },
     currentConditionIcon: {
-        with: 25,
-        height: 25,
+        with: 15,
+        height: 15,
+        marginBottom: 5,
         resizeMode: 'contain'
     }
 })

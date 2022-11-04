@@ -1,5 +1,5 @@
-const getWeather = async () => {
-    return await fetch("https://weather-api.mathisbarre.com/nantes")
+const getWeather = async endpoint => {
+    return await fetch("https://weather-api.mathisbarre.com/" + endpoint)
         .then(res => res.json())
         .then(
             (result) => {
