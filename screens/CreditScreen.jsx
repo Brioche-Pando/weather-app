@@ -1,13 +1,13 @@
 import React from 'react';
-import { StyleSheet, Text, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, SafeAreaView, View, ActivityIndicator} from 'react-native';
 
 export default function SettingsScreen() {
 
     return (
         <SafeAreaView style={styles.container}>
-            <Text style={styles.instructions}>
-                CREDIT
-            </Text>
+            <View style={{ flex: 1, alignItem: 'center', justifyContent: 'center' }}>
+                <ActivityIndicator size='large' />
+            </View>
         </SafeAreaView>
     );
 }
@@ -15,12 +15,12 @@ export default function SettingsScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#121521',
         alignItems: 'center',
         justifyContent: 'center',
     },
     instructions: {
-        color: '#888',
+        color: '#fff',
         fontSize: 18,
         marginHorizontal: 15,
     }

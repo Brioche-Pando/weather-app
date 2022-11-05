@@ -1,53 +1,32 @@
 import React from "react";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { Ionicons } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
 import HomeStack from '../navigation/HomeStack'
 import CreditScreen from '../screens/CreditScreen'
 
-const Tab = createBottomTabNavigator({
-    Home: {
-        screen: HomeStack,
-        navigationOptions: {
-            tabBarLabel: "Home",
-            tabBarOptions: {
-                activeTintColor: "#006600",
-            },
-            tabBarIcon: (tabInfo) => {
-                return (
-                    <Ionicons
-                        name="md-home"
-                        size={24}
-                        color={tabInfo.focused ? "#006600" : "#8e8e93"}
-                    />
-                );
-            },
-        },
-    },
-    Credit: {
-        screen: CreditScreen,
-        navigationOptions: {
-            tabBarLabel: "Crédit",
-            tabBarOptions: {
-                activeTintColor: "#006600",
-            },
-            tabBarIcon: (tabInfo) => {
-                return (
-                    <Ionicons
-                        name="md-home"
-                        size={24}
-                        color={tabInfo.focused ? "#006600" : "#8e8e93"}
-                    />
-                );
-            },
-        },
-    },
-})
+const Tab = createBottomTabNavigator()
 
 export default function AppTabs() {
     return (
-        <Tab.Navigator>
-            <Tab.Screen name="Home" component={HomeStack} options={{ headerShown: false, showIcon: false }} />
-            <Tab.Screen name="Crédit" component={CreditScreen} />
+        <Tab.Navigator
+            screenOptions={{
+                tabBarActiveTintColor: '#fff',
+                tabBarInactiveTintColor: '#cacbcf',
+                tabBarStyle: {
+                    backgroundColor: '#121521'
+                }
+            }}>
+            <Tab.Screen name="Accueil" component={HomeStack} options={{
+                headerShown: false,
+                tabBarIcon: () => (
+                    <MaterialIcons name="home" size={22} color={'#cacbcf'} />
+                ),
+            }} />
+            <Tab.Screen name="Crédit" component={CreditScreen} options={{
+                tabBarIcon: () => (
+                    <MaterialIcons name="info" size={22} color={'#cacbcf'} />
+                ),
+            }} />
         </Tab.Navigator>
     )
 }
