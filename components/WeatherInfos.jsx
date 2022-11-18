@@ -1,47 +1,48 @@
 import React, { Fragment } from 'react'
 import { View, Image, Text, StyleSheet } from 'react-native'
-import { Link } from '@react-navigation/native'
+import { Link, useNavigation } from '@react-navigation/native'
 import { useRoute } from '@react-navigation/native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 export default function WeatherInfos(props) {
     const route = useRoute()
+    const navigation = useNavigation()
 
     return (
         <View style={styles.container}>
             {route.name == 'Home' ?
-                <Link
-                    to={{ screen: 'WeatherScreen', params: { date: props.date } }}
+                <TouchableOpacity
+                    onPress={navigation.navigate('WeatherScreen', { date: props.date })}
+                    style={styles.weatherInfos}
                 >
-                    <View style={styles.weatherInfos}>
-                        <Text style={{ color: '#fff' }}>{getDayName(props.date)}</Text>
-                        <View style={{ flexDirection: 'row' }}>
-                            <Image
-                                style={styles.weatherInfosIcon}
-                                source={{
-                                    uri: props.icon
-                                }}
-                            />
-                            <Text style={{ color: '#cacbcf' }}>{props.condition}</Text>
-                        </View>
-                        <Text style={{ color: '#fff' }}>max. {props.temperature.max}{props.temperature.unit}</Text>
+                    <Text style={{ color: '#fff' }}>{getDayName(props.date)}</Text>
+                    <View style={{ flexDirection: 'row' }}>
+                        <Image
+                            style={styles.weatherInfosIcon}
+                            source={{
+                                uri: props.icon
+                            }}
+                        />
+                        <Text style={{ color: '#cacbcf' }}>{props.condition}</Text>
                     </View>
-                </Link>
-                : (
-                    <View style={styles.weatherInfos}>
-                        <Text style={{ color: '#fff' }}>{getHoursMinutes(props.datetime)}</Text>
-                        <View style={{ flexDirection: 'row' }}>
-                            <Image
-                                style={styles.weatherInfosIcon}
-                                source={{
-                                    uri: props.icon
-                                }}
-                            />
-                            <Text style={{ color: '#cacbcf' }}>{props.condition}</Text>
-                        </View>
-                        <Text style={{ color: '#fff' }}>max. {props.temperature.value}{props.temperature.unit}</Text>
+                    <Text style={{ color: '#fff' }}>max. {props.temperature.max}{props.temperature.unit}</Text>
+                </TouchableOpacity>
+                :
+                <View style={styles.weatherInfos}>
+                    <Text style={{ color: '#fff' }}>{getHoursMinutes(props.datetime)}</Text>
+                    <View style={{ flexDirection: 'row' }}>
+                        <Image
+                            style={styles.weatherInfosIcon}
+                            source={{
+                                uri: props.icon
+                            }}
+                        />
+                        <Text style={{ color: '#cacbcf' }}>{props.condition}</Text>
                     </View>
-                )}
+                    <Text style={{ color: '#fff' }}>max. {props.temperature.value}{props.temperature.unit}</Text>
+                </View>
+            }
         </View>
     )
 }
@@ -78,7 +79,6 @@ const styles = StyleSheet.create({
     weatherInfos: {
         paddingVertical: 25,
         marginHorizontal: 10,
-        display: 'flex',
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
