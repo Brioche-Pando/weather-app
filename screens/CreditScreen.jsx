@@ -1,12 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, SafeAreaView, View, ActivityIndicator } from 'react-native';
+import theme from '../themes/default';
 
-export default function SettingsScreen() {
-
+export default function CreditScreen() {
     return (
         <SafeAreaView style={styles.container}>
             <View style={{ flex: 1, alignItem: 'center', justifyContent: 'center' }}>
-                <Text style={{color: '#fff'}}>Si vous me découvrez, merci de me découvrir !</Text>
+                <Text style={styles.instructions}>Si vous me découvrez, merci de me découvrir !</Text>
             </View>
         </SafeAreaView>
     );
@@ -15,13 +15,14 @@ export default function SettingsScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#121521',
+        backgroundColor: theme.colors.primary0,
         alignItems: 'center',
         justifyContent: 'center',
     },
     instructions: {
-        color: '#fff',
-        fontSize: 18,
-        marginHorizontal: 15,
+        marginHorizontal: theme.spacing.base,
+        color: theme.colors.white,
+        fontSize: theme.fontSize.lg,
+        textAlign: 'center'
     }
 });

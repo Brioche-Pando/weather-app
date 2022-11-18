@@ -3,6 +3,7 @@ import { useRoute } from '@react-navigation/native'
 import { useQuery } from '@tanstack/react-query'
 import getWeather from '../api/WeatherApi'
 import WeatherInfos from '../components/WeatherInfos'
+import theme from '../themes/default'
 
 export default function WeatherScreen() {
     const route = useRoute()
@@ -10,7 +11,7 @@ export default function WeatherScreen() {
 
     return (
         isLoading ?
-            <View style={{ backgroundColor: '#121521', flex: 1, alignItem: 'center', justifyContent: 'center' }}>
+            <View style={{ backgroundColor: theme.colors.primary0, flex: 1, alignItem: 'center', justifyContent: 'center' }}>
                 <ActivityIndicator size='large' />
             </View>
             : isError ?
@@ -19,7 +20,7 @@ export default function WeatherScreen() {
                     <Button
                         onPress={refetch}
                         title="Reload"
-                        color="#841584"
+                        color={theme.colors.errorSurface}
                         accessibilityLabel="Learn more about this purple button"
                     />
                 </View>
@@ -41,7 +42,7 @@ export default function WeatherScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#121521',
+        backgroundColor: theme.colors.primary0,
         justifyContent: 'center'
     },
 })

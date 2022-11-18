@@ -9,6 +9,8 @@ import humidityIcon from '../assets/icons/humidity.png'
 import rainIcon from '../assets/icons/rain.png'
 import sunIcon from '../assets/icons/sun.png'
 
+import theme from '../themes/default'
+
 const wait = (timeout) => {
     return new Promise(resolve => setTimeout(resolve, timeout));
 }
@@ -37,16 +39,16 @@ function Weathers() {
 
     return (
         isLoading ?
-            <View style={{ backgroundColor: '#121521', flex: 1, alignItem: 'center', justifyContent: 'center' }}>
+            <View style={{ backgroundColor: theme.colors.primary0, flex: 1, alignItem: 'center', justifyContent: 'center' }}>
                 <ActivityIndicator size='large' />
             </View>
             : isError ?
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={{ color: '#fff' }}>Erreur lors de la requête</Text>
+                    <Text style={{ color: theme.colors.white }}>Erreur lors de la requête</Text>
                     <Button
                         onPress={refetch}
                         title="Reload"
-                        color="#841584"
+                        color={theme.colors.errorSurface}
                         accessibilityLabel="Learn more about this purple button"
                     />
                 </View>
@@ -60,7 +62,7 @@ function Weathers() {
                         }
                     >
                         <View style={styles.header}>
-                            <View style={{ marginBottom: 25, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                            <View style={{ marginBottom: theme.spacing.screenPadding, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                                 <Image
                                     source={{
                                         uri: data.currentConditions.iconBig,
@@ -68,9 +70,9 @@ function Weathers() {
                                         height: 85
                                     }}
                                 />
-                                <View style={{ marginLeft: 25 }}>
-                                    <Text style={{ color: '#fff', fontSize: 20, fontWeight: 'bold' }}>Actuellement</Text>
-                                    <Text style={{ color: '#fff', fontSize: 32, fontWeight: 'bold' }}>{data.currentConditions.temperature.value}{data.currentConditions.temperature.unit}</Text>
+                                <View style={{ marginLeft: theme.spacing.screenPadding }}>
+                                    <Text style={{ color: theme.colors.white, fontSize: theme.fontSize.lg, fontWeight: theme.fontWeight.bold }}>Actuellement</Text>
+                                    <Text style={{ color: theme.colors.white, fontSize: theme.fontSize.xl3, fontWeight: theme.fontWeight.bold }}>{data.currentConditions.temperature.value}{data.currentConditions.temperature.unit}</Text>
                                 </View>
                             </View>
                             <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
@@ -79,32 +81,32 @@ function Weathers() {
                                         style={styles.currentConditionIcon}
                                         source={windIcon}
                                     />
-                                    <Text style={{ color: '#fff', fontSize: 16, fontWeight: 'bold' }}>{data.currentConditions.windSpeed.value} {data.currentConditions.windSpeed.unit}</Text>
-                                    <Text style={{ color: '#cacbcf', fontSize: 12 }}>Vent</Text>
+                                    <Text style={{ color: theme.colors.white, fontSize: theme.fontSize.md, fontWeight: theme.fontWeight.bold }}>{data.currentConditions.windSpeed.value} {data.currentConditions.windSpeed.unit}</Text>
+                                    <Text style={{ color: theme.colors.gray1, fontSize: theme.fontSize.xs }}>Vent</Text>
                                 </View>
                                 <View style={{ alignItems: 'center' }}>
                                     <Image
                                         style={styles.currentConditionIcon}
                                         source={humidityIcon}
                                     />
-                                    <Text style={{ color: '#fff', fontSize: 16, fontWeight: 'bold' }}>{data.currentConditions.humidity.value} {data.currentConditions.humidity.unit}</Text>
-                                    <Text style={{ color: '#cacbcf', fontSize: 12 }}>Humidité</Text>
+                                    <Text style={{ color: theme.colors.white, fontSize: theme.fontSize.md, fontWeight: theme.fontWeight.bold }}>{data.currentConditions.humidity.value} {data.currentConditions.humidity.unit}</Text>
+                                    <Text style={{ color: theme.colors.gray1, fontSize: theme.fontSize.xs }}>Humidité</Text>
                                 </View>
                                 <View style={{ alignItems: 'center' }}>
                                     <Image
                                         style={styles.currentConditionIcon}
                                         source={rainIcon}
                                     />
-                                    <Text style={{ color: '#fff', fontSize: 16, fontWeight: 'bold' }}>XX %</Text>
-                                    <Text style={{ color: '#cacbcf', fontSize: 12 }}>Pluie</Text>
+                                    <Text style={{ color: theme.colors.white, fontSize: theme.fontSize.md, fontWeight: theme.fontWeight.bold }}>XX %</Text>
+                                    <Text style={{ color: theme.colors.gray1, fontSize: theme.fontSize.xs }}>Pluie</Text>
                                 </View>
                                 <View style={{ alignItems: 'center' }}>
                                     <Image
                                         style={styles.currentConditionIcon}
                                         source={sunIcon}
                                     />
-                                    <Text style={{ color: '#fff', fontSize: 16, fontWeight: 'bold' }}>XX %</Text>
-                                    <Text style={{ color: '#cacbcf', fontSize: 12 }}>UV</Text>
+                                    <Text style={{ color: theme.colors.white, fontSize: theme.fontSize.md, fontWeight: theme.fontWeight.bold }}>XX %</Text>
+                                    <Text style={{ color: theme.colors.gray1, fontSize: theme.fontSize.xs }}>UV</Text>
                                 </View>
                             </View>
                         </View>
@@ -123,21 +125,21 @@ function Weathers() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#121521',
+        backgroundColor: theme.colors.primary0,
         justifyContent: 'center'
     },
     header: {
-        backgroundColor: '#2b334f',
-        marginBottom: 25,
-        paddingTop: 75,
-        paddingBottom: 35,
-        borderBottomRightRadius: 30,
-        borderBottomLeftRadius: 30
+        backgroundColor: theme.colors.primary1,
+        marginBottom: theme.spacing.screenPadding,
+        paddingTop: theme.spacing.quadruple,
+        paddingBottom: theme.spacing.double,
+        borderBottomRightRadius: theme.radius.quadruple,
+        borderBottomLeftRadius: theme.radius.quadruple
     },
     currentConditionIcon: {
-        with: 15,
+        width: 15,
         height: 15,
-        marginBottom: 5,
+        marginBottom: theme.spacing.quarter,
         resizeMode: 'contain'
     }
 })

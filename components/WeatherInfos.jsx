@@ -2,7 +2,8 @@ import React from 'react'
 import { View, Image, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { useRoute } from '@react-navigation/native';
- 
+import theme from '../themes/default';
+
 export default function WeatherInfos(props) {
     const route = useRoute()
     const navigation = useNavigation()
@@ -14,7 +15,7 @@ export default function WeatherInfos(props) {
                     onPress={() => navigation.navigate('WeatherScreen', { date: props.date })}
                     style={styles.weatherInfos}
                 >
-                    <Text style={{ color: '#fff' }}>{getDayName(props.date)}</Text>
+                    <Text style={{ color: theme.colors.white }}>{getDayName(props.date)}</Text>
                     <View style={{ flexDirection: 'row' }}>
                         <Image
                             style={styles.weatherInfosIcon}
@@ -22,13 +23,13 @@ export default function WeatherInfos(props) {
                                 uri: props.icon
                             }}
                         />
-                        <Text style={{ color: '#cacbcf' }}>{props.condition}</Text>
+                        <Text style={{ color: theme.colors.gray1 }}>{props.condition}</Text>
                     </View>
-                    <Text style={{ color: '#fff' }}>max. {props.temperature.max}{props.temperature.unit}</Text>
+                    <Text style={{ color: theme.colors.white }}>max. {props.temperature.max}{props.temperature.unit}</Text>
                 </TouchableOpacity>
                 :
                 <View style={styles.weatherInfos}>
-                    <Text style={{ color: '#fff' }}>{getHoursMinutes(props.datetime)}</Text>
+                    <Text style={{ color: theme.colors.white }}>{getHoursMinutes(props.datetime)}</Text>
                     <View style={{ flexDirection: 'row' }}>
                         <Image
                             style={styles.weatherInfosIcon}
@@ -36,9 +37,9 @@ export default function WeatherInfos(props) {
                                 uri: props.icon
                             }}
                         />
-                        <Text style={{ color: '#cacbcf' }}>{props.condition}</Text>
+                        <Text style={{ color: theme.colors.gray1 }}>{props.condition}</Text>
                     </View>
-                    <Text style={{ color: '#fff' }}>max. {props.temperature.value}{props.temperature.unit}</Text>
+                    <Text style={{ color: theme.colors.white }}>max. {props.temperature.value}{props.temperature.unit}</Text>
                 </View>
             }
         </View>
@@ -69,24 +70,23 @@ function getHoursMinutes(datetime) {
     return hour + ':' + minutes
 }
 
-
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#121521'
+        backgroundColor: theme.colors.primary0
     },
     weatherInfos: {
-        paddingVertical: 25,
-        marginHorizontal: 10,
+        paddingVertical: theme.spacing.doubleSm,
+        marginHorizontal: theme.spacing.demiLG,
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
         borderBottomWidth: 1,
-        borderBottomColor: '#797c86'
+        borderBottomColor: theme.colors.border1
     },
     weatherInfosIcon: {
         width: 20,
         height: 20,
-        marginRight: 5,
+        marginRight: theme.spacing.quarter,
         resizeMode: 'contain'
     }
 })

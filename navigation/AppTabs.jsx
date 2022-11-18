@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { MaterialIcons } from "@expo/vector-icons";
 import HomeStack from '../navigation/HomeStack'
 import CreditScreen from '../screens/CreditScreen'
+import theme from "../themes/default";
 
 const Tab = createBottomTabNavigator()
 
@@ -10,23 +11,27 @@ export default function AppTabs() {
     return (
         <Tab.Navigator
             screenOptions={{
-                tabBarActiveTintColor: '#fff',
-                tabBarInactiveTintColor: '#cacbcf',
+                tabBarActiveTintColor: theme.colors.white,
+                tabBarInactiveTintColor: theme.colors.gray1,
                 tabBarStyle: {
-                    backgroundColor: '#121521'
+                    backgroundColor: theme.colors.primary0
                 }
             }}>
-            <Tab.Screen name="Accueil" component={HomeStack} options={{
-                headerShown: false,
-                tabBarIcon: () => (
-                    <MaterialIcons name="home" size={22} color={'#cacbcf'} />
-                ),
-            }} />
-            <Tab.Screen name="Crédit" component={CreditScreen} options={{
-                tabBarIcon: () => (
-                    <MaterialIcons name="info" size={22} color={'#cacbcf'} />
-                ),
-            }} />
+            <Tab.Screen name="HomeStack" component={HomeStack} options={
+                {
+                    title: 'Accueil',
+                    headerShown: false,
+                    tabBarIcon: () => (
+                        <MaterialIcons name="home" size={22} color={theme.colors.gray1} />
+                    ),
+                }} />
+            <Tab.Screen name="CreditScreen" component={CreditScreen} options={
+                {
+                    title: 'Crédit',
+                    tabBarIcon: () => (
+                        <MaterialIcons name="info" size={22} color={theme.colors.gray1} />
+                    ),
+                }} />
         </Tab.Navigator>
     )
 }
