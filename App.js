@@ -4,7 +4,6 @@ import { StatusBar } from 'react-native'
 import React from 'react'
 import AppTabs from './navigation/AppTabs'
 
-
 export default function App() {
   const queryClient = new QueryClient();
 

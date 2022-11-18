@@ -1,12 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, SafeAreaView, View, ActivityIndicator} from 'react-native';
+import { StyleSheet, Text, SafeAreaView, View, ActivityIndicator } from 'react-native';
 
 export default function SettingsScreen() {
 
     return (
         <SafeAreaView style={styles.container}>
             <View style={{ flex: 1, alignItem: 'center', justifyContent: 'center' }}>
-                <ActivityIndicator size='large' />
+                <Text style={{color: '#fff'}}>Si vous me découvrez, merci de me découvrir !</Text>
             </View>
         </SafeAreaView>
     );

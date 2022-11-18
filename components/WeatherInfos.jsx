@@ -1,10 +1,8 @@
-import React, { Fragment } from 'react'
-import { View, Image, Text, StyleSheet } from 'react-native'
-import { Link, useNavigation } from '@react-navigation/native'
+import React from 'react'
+import { View, Image, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 import { useRoute } from '@react-navigation/native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-
-
+ 
 export default function WeatherInfos(props) {
     const route = useRoute()
     const navigation = useNavigation()
@@ -13,7 +11,7 @@ export default function WeatherInfos(props) {
         <View style={styles.container}>
             {route.name == 'Home' ?
                 <TouchableOpacity
-                    onPress={navigation.navigate('WeatherScreen', { date: props.date })}
+                    onPress={() => navigation.navigate('WeatherScreen', { date: props.date })}
                     style={styles.weatherInfos}
                 >
                     <Text style={{ color: '#fff' }}>{getDayName(props.date)}</Text>
