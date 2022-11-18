@@ -19,15 +19,21 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.brioche_pando.weatherapp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "splash": {
       "image": "./assets/splash.png",
-      "backgroundColor": "#f0a1a1",
-      "resiz  eMode": "contain"
+      "backgroundColor": "#E6F0F6",
+      "resizeMode": "contain"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "8c22f14a-aded-470b-901a-930c937eb8d4"
+      }
     }
   }
 }
