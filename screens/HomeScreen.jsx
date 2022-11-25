@@ -15,7 +15,7 @@ const wait = (timeout) => {
     return new Promise(resolve => setTimeout(resolve, timeout));
 };
 
-export default function HomeSreen() {
+export default function HomeScreen() {
     return (
         <SafeAreaView style={styles.container}>
             <Weathers />
@@ -28,21 +28,20 @@ function Weathers() {
 
     const onRefresh = React.useCallback(() => {
         setRefreshing(true);
-        wait(2000).then(() => (
-            setRefreshing(false)),
-            refetch()
-        );
-
+        refetch();
+        wait(2000).then(() => setRefreshing(false));
     }, []);
 
     const { data, isLoading, isError, refetch } = useQuery({ queryFn: () => getWeather('nantes'), queryKey: ['weatherCall', 'nantes'] });
 
     return (
-        isLoading ?
-            <View style={{ backgroundColor: theme.colors.primary0, flex: 1, alignItem: 'center', justifyContent: 'center' }}>
-                <ActivityIndicator size='large' />
-            </View>
-            : isError ?
+        <>
+            {isLoading && (
+                <View style={{ backgroundColor: theme.colors.primary0, flex: 1, alignItem: 'center', justifyContent: 'center' }}>
+                    <ActivityIndicator size='large' />
+                </View>
+            )}
+            {isError && (
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                     <Text style={{ color: theme.colors.white }}>Erreur lors de la requête</Text>
                     <Button
@@ -51,74 +50,76 @@ function Weathers() {
                         color={theme.colors.errorSurface}
                         accessibilityLabel='Learn more about this purple button'
                     />
-                </View>
-                : (
-                    <ScrollView
-                        refreshControl={
-                            <RefreshControl
-                                refreshing={refreshing}
-                                onRefresh={onRefresh}
+                </View >
+            )}
+            {data && (
+                <ScrollView
+                    refreshControl={
+                        <RefreshControl
+                            refreshing={refreshing}
+                            onRefresh={onRefresh}
+                        />
+                    }
+                >
+                    <View style={styles.header}>
+                        <View style={{ marginBottom: theme.spacing.screenPadding, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                            <Image
+                                source={{
+                                    uri: data.currentConditions.iconBig,
+                                    width: 85,
+                                    height: 85
+                                }}
                             />
-                        }
-                    >
-                        <View style={styles.header}>
-                            <View style={{ marginBottom: theme.spacing.screenPadding, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                            <View style={{ marginLeft: theme.spacing.screenPadding }}>
+                                <Text style={{ color: theme.colors.white, fontSize: theme.fontSize.lg, fontWeight: theme.fontWeight.bold }}>Actuellement</Text>
+                                <Text style={{ color: theme.colors.white, fontSize: theme.fontSize.xl3, fontWeight: theme.fontWeight.bold }}>{data.currentConditions.temperature.value}{data.currentConditions.temperature.unit}</Text>
+                            </View>
+                        </View>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
+                            <View style={{ alignItems: 'center' }}>
                                 <Image
-                                    source={{
-                                        uri: data.currentConditions.iconBig,
-                                        width: 85,
-                                        height: 85
-                                    }}
+                                    style={styles.currentConditionIcon}
+                                    source={windIcon}
                                 />
-                                <View style={{ marginLeft: theme.spacing.screenPadding }}>
-                                    <Text style={{ color: theme.colors.white, fontSize: theme.fontSize.lg, fontWeight: theme.fontWeight.bold }}>Actuellement</Text>
-                                    <Text style={{ color: theme.colors.white, fontSize: theme.fontSize.xl3, fontWeight: theme.fontWeight.bold }}>{data.currentConditions.temperature.value}{data.currentConditions.temperature.unit}</Text>
-                                </View>
+                                <Text style={{ color: theme.colors.white, fontSize: theme.fontSize.md, fontWeight: theme.fontWeight.bold }}>{data.currentConditions.windSpeed.value} {data.currentConditions.windSpeed.unit}</Text>
+                                <Text style={{ color: theme.colors.gray1, fontSize: theme.fontSize.xs }}>Vent</Text>
                             </View>
-                            <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
-                                <View style={{ alignItems: 'center' }}>
-                                    <Image
-                                        style={styles.currentConditionIcon}
-                                        source={windIcon}
-                                    />
-                                    <Text style={{ color: theme.colors.white, fontSize: theme.fontSize.md, fontWeight: theme.fontWeight.bold }}>{data.currentConditions.windSpeed.value} {data.currentConditions.windSpeed.unit}</Text>
-                                    <Text style={{ color: theme.colors.gray1, fontSize: theme.fontSize.xs }}>Vent</Text>
-                                </View>
-                                <View style={{ alignItems: 'center' }}>
-                                    <Image
-                                        style={styles.currentConditionIcon}
-                                        source={humidityIcon}
-                                    />
-                                    <Text style={{ color: theme.colors.white, fontSize: theme.fontSize.md, fontWeight: theme.fontWeight.bold }}>{data.currentConditions.humidity.value} {data.currentConditions.humidity.unit}</Text>
-                                    <Text style={{ color: theme.colors.gray1, fontSize: theme.fontSize.xs }}>Humidité</Text>
-                                </View>
-                                <View style={{ alignItems: 'center' }}>
-                                    <Image
-                                        style={styles.currentConditionIcon}
-                                        source={rainIcon}
-                                    />
-                                    <Text style={{ color: theme.colors.white, fontSize: theme.fontSize.md, fontWeight: theme.fontWeight.bold }}>XX %</Text>
-                                    <Text style={{ color: theme.colors.gray1, fontSize: theme.fontSize.xs }}>Pluie</Text>
-                                </View>
-                                <View style={{ alignItems: 'center' }}>
-                                    <Image
-                                        style={styles.currentConditionIcon}
-                                        source={sunIcon}
-                                    />
-                                    <Text style={{ color: theme.colors.white, fontSize: theme.fontSize.md, fontWeight: theme.fontWeight.bold }}>XX %</Text>
-                                    <Text style={{ color: theme.colors.gray1, fontSize: theme.fontSize.xs }}>UV</Text>
-                                </View>
+                            <View style={{ alignItems: 'center' }}>
+                                <Image
+                                    style={styles.currentConditionIcon}
+                                    source={humidityIcon}
+                                />
+                                <Text style={{ color: theme.colors.white, fontSize: theme.fontSize.md, fontWeight: theme.fontWeight.bold }}>{data.currentConditions.humidity.value} {data.currentConditions.humidity.unit}</Text>
+                                <Text style={{ color: theme.colors.gray1, fontSize: theme.fontSize.xs }}>Humidité</Text>
+                            </View>
+                            <View style={{ alignItems: 'center' }}>
+                                <Image
+                                    style={styles.currentConditionIcon}
+                                    source={rainIcon}
+                                />
+                                <Text style={{ color: theme.colors.white, fontSize: theme.fontSize.md, fontWeight: theme.fontWeight.bold }}>XX %</Text>
+                                <Text style={{ color: theme.colors.gray1, fontSize: theme.fontSize.xs }}>Pluie</Text>
+                            </View>
+                            <View style={{ alignItems: 'center' }}>
+                                <Image
+                                    style={styles.currentConditionIcon}
+                                    source={sunIcon}
+                                />
+                                <Text style={{ color: theme.colors.white, fontSize: theme.fontSize.md, fontWeight: theme.fontWeight.bold }}>XX %</Text>
+                                <Text style={{ color: theme.colors.gray1, fontSize: theme.fontSize.xs }}>UV</Text>
                             </View>
                         </View>
-                        <View style={styles.dayPreviewContainer}>
-                            {data.next5DaysConditions.map(day => {
-                                return (
-                                    <WeatherInfos key={day.date} date={day.date} icon={day.icon} condition={day.condition} temperature={day.temperature} hourly={day.hourly} />
-                                );
-                            })}
-                        </View>
-                    </ScrollView>
-                )
+                    </View>
+                    <View style={styles.dayPreviewContainer}>
+                        {data.next5DaysConditions.map(day => {
+                            return (
+                                <WeatherInfos key={day.date} date={day.date} icon={day.icon} condition={day.condition} temperature={day.temperature} hourly={day.hourly} />
+                            );
+                        })}
+                    </View>
+                </ScrollView>
+            )}
+        </>
     );
 }
 

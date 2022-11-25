@@ -9,7 +9,7 @@ const Stack = createStackNavigator();
 export default function HomeStack() {
     return (
         <Stack.Navigator
-            defaultScreen="Home"
+            defaultScreen="HomeScreen"
             screenOptions={{
                 headerStyle: { backgroundColor: theme.colors.primary1 },
                 headerTintColor: theme.colors.white,
@@ -19,7 +19,7 @@ export default function HomeStack() {
             }
             }
         >
-            <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false, title: 'Accueil' }} />
+            <Stack.Screen name="HomeScreen" component={HomeScreen} options={{ headerShown: false, title: 'Accueil' }} />
             <Stack.Screen name="WeatherScreen" component={WeatherScreen} options={{ title: 'Météo' }} />
         </Stack.Navigator >
     );
