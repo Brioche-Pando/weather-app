@@ -18,7 +18,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",
-        "backgroundColor": "#1D75F3"
+        "backgroundColor": "#121521"
       },
       "package": "com.brioche_pando.weatherapp"
     },
@@ -27,7 +27,7 @@
     },
     "splash": {
       "image": "./assets/splash.png",
-      "backgroundColor": "#E6F0F6",
+      "backgroundColor": "#121521",
       "resizeMode": "contain"
     },
     "extra": {
