@@ -47,9 +47,9 @@ function Weathers() {
                     <Text style={{ color: theme.colors.white }}>Erreur lors de la requête</Text>
                     <Button
                         onPress={refetch}
-                        title="Reload"
+                        title='Reload'
                         color={theme.colors.errorSurface}
-                        accessibilityLabel="Learn more about this purple button"
+                        accessibilityLabel='Learn more about this purple button'
                     />
                 </View>
                 : (
