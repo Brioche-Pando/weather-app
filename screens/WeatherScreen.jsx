@@ -1,13 +1,14 @@
-import { StyleSheet, View, ScrollView, Text, ActivityIndicator, Button } from 'react-native'
-import { useRoute } from '@react-navigation/native'
-import { useQuery } from '@tanstack/react-query'
-import getWeather from '../api/WeatherApi'
-import WeatherInfos from '../components/WeatherInfos'
-import theme from '../themes/default'
+import React from 'react';
+import { StyleSheet, View, ScrollView, Text, ActivityIndicator, Button } from 'react-native';
+import { useRoute } from '@react-navigation/native';
+import { useQuery } from '@tanstack/react-query';
+import getWeather from '../api/WeatherApi';
+import WeatherInfos from '../components/WeatherInfos';
+import theme from '../themes/default';
 
 export default function WeatherScreen() {
-    const route = useRoute()
-    const { data, isLoading, isError, refetch } = useQuery({ queryFn: () => getWeather('nantes/' + route.params.date), queryKey: ['weatherCall', route.params.date] })
+    const route = useRoute();
+    const { data, isLoading, isError, refetch } = useQuery({ queryFn: () => getWeather('nantes/' + route.params.date), queryKey: ['weatherCall', route.params.date] });
 
     return (
         isLoading ?
@@ -31,12 +32,12 @@ export default function WeatherScreen() {
                             {data.hourly.map(hourly => {
                                 return (
                                     <WeatherInfos key={hourly.datetime} datetime={hourly.datetime} icon={hourly.icon} condition={hourly.condition} temperature={hourly.temperature} hourly={hourly.hourly} />
-                                )
+                                );
                             })}
                         </View>
                     </ScrollView>
                 )
-    )
+    );
 }
 
 const styles = StyleSheet.create({
@@ -45,4 +46,4 @@ const styles = StyleSheet.create({
         backgroundColor: theme.colors.primary0,
         justifyContent: 'center'
     },
-})
+});

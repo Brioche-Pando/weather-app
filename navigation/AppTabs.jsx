@@ -1,11 +1,11 @@
-import React from "react";
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { MaterialIcons } from "@expo/vector-icons";
-import HomeStack from '../navigation/HomeStack'
-import CreditScreen from '../screens/CreditScreen'
-import theme from "../themes/default";
+import React from 'react';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { MaterialIcons } from '@expo/vector-icons';
+import HomeStack from '../navigation/HomeStack';
+import CreditScreen from '../screens/CreditScreen';
+import theme from '../themes/default';
 
-const Tab = createBottomTabNavigator()
+const Tab = createBottomTabNavigator();
 
 export default function AppTabs() {
     return (
@@ -33,5 +33,5 @@ export default function AppTabs() {
                     ),
                 }} />
         </Tab.Navigator>
-    )
+    );
 }

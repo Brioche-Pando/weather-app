@@ -1,12 +1,13 @@
-import React from 'react'
-import { View, Image, Text, StyleSheet, TouchableOpacity } from 'react-native'
-import { useNavigation } from '@react-navigation/native'
+/* eslint-disable react/prop-types */
+import React from 'react';
+import { View, Image, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { useRoute } from '@react-navigation/native';
 import theme from '../themes/default';
 
 export default function WeatherInfos(props) {
-    const route = useRoute()
-    const navigation = useNavigation()
+    const route = useRoute();
+    const navigation = useNavigation();
 
     return (
         <View style={styles.container}>
@@ -43,31 +44,31 @@ export default function WeatherInfos(props) {
                 </View>
             }
         </View>
-    )
+    );
 }
 
 function getDayName(date) {
     let a = new Date(date);
-    let days = []
-    days[0] = "Dim."
-    days[1] = "Lun."
-    days[2] = "Mar."
-    days[3] = "Mer."
-    days[4] = "Jeu."
-    days[5] = "Ven."
-    days[6] = "Sam."
-    return days[a.getDay()]
+    let days = [];
+    days[0] = 'Dim.';
+    days[1] = 'Lun.';
+    days[2] = 'Mar.';
+    days[3] = 'Mer.';
+    days[4] = 'Jeu.';
+    days[5] = 'Ven.';
+    days[6] = 'Sam.';
+    return days[a.getDay()];
 }
 
 function getHoursMinutes(datetime) {
-    const _datetime = new Date(datetime)
-    let hour = _datetime.getHours()
-    let minutes = _datetime.getMinutes()
+    const _datetime = new Date(datetime);
+    let hour = _datetime.getHours();
+    let minutes = _datetime.getMinutes();
 
-    hour = ("0" + hour).slice(-2)
-    minutes = ("0" + minutes).slice(-2)
+    hour = ('0' + hour).slice(-2);
+    minutes = ('0' + minutes).slice(-2);
 
-    return hour + ':' + minutes
+    return hour + ':' + minutes;
 }
 
 const styles = StyleSheet.create({
@@ -89,4 +90,4 @@ const styles = StyleSheet.create({
         marginRight: theme.spacing.quarter,
         resizeMode: 'contain'
     }
-})
+});

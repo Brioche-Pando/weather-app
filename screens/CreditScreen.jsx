@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, SafeAreaView, View, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, SafeAreaView, View } from 'react-native';
 import theme from '../themes/default';
 
 export default function CreditScreen() {

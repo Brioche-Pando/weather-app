@@ -1,6 +1,7 @@
+import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import HomeScreen from '../screens/HomeScreen'
-import WeatherScreen from '../screens/WeatherScreen'
+import HomeScreen from '../screens/HomeScreen';
+import WeatherScreen from '../screens/WeatherScreen';
 import theme from '../themes/default';
 
 const Stack = createStackNavigator();

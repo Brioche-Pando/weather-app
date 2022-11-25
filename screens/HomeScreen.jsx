@@ -1,26 +1,26 @@
-import React, { Fragment } from 'react'
-import { RefreshControl, StyleSheet, SafeAreaView, View, Image, Text, Button, ScrollView, ActivityIndicator } from 'react-native'
-import { useQuery } from '@tanstack/react-query'
-import getWeather from '../api/WeatherApi'
-import WeatherInfos from '../components/WeatherInfos'
+import React from 'react';
+import { RefreshControl, StyleSheet, SafeAreaView, View, Image, Text, Button, ScrollView, ActivityIndicator } from 'react-native';
+import { useQuery } from '@tanstack/react-query';
+import getWeather from '../api/WeatherApi';
+import WeatherInfos from '../components/WeatherInfos';
 
-import windIcon from '../assets/icons/wind.png'
-import humidityIcon from '../assets/icons/humidity.png'
-import rainIcon from '../assets/icons/rain.png'
-import sunIcon from '../assets/icons/sun.png'
+import windIcon from '../assets/icons/wind.png';
+import humidityIcon from '../assets/icons/humidity.png';
+import rainIcon from '../assets/icons/rain.png';
+import sunIcon from '../assets/icons/sun.png';
 
-import theme from '../themes/default'
+import theme from '../themes/default';
 
 const wait = (timeout) => {
     return new Promise(resolve => setTimeout(resolve, timeout));
-}
+};
 
 export default function HomeSreen() {
     return (
         <SafeAreaView style={styles.container}>
             <Weathers />
         </SafeAreaView>
-    )
+    );
 }
 
 function Weathers() {
@@ -31,11 +31,11 @@ function Weathers() {
         wait(2000).then(() => (
             setRefreshing(false)),
             refetch()
-        )
+        );
 
     }, []);
 
-    const { data, isLoading, isError, refetch } = useQuery({ queryFn: () => getWeather('nantes'), queryKey: ['weatherCall', 'nantes'] })
+    const { data, isLoading, isError, refetch } = useQuery({ queryFn: () => getWeather('nantes'), queryKey: ['weatherCall', 'nantes'] });
 
     return (
         isLoading ?
@@ -114,12 +114,12 @@ function Weathers() {
                             {data.next5DaysConditions.map(day => {
                                 return (
                                     <WeatherInfos key={day.date} date={day.date} icon={day.icon} condition={day.condition} temperature={day.temperature} hourly={day.hourly} />
-                                )
+                                );
                             })}
                         </View>
                     </ScrollView>
                 )
-    )
+    );
 }
 
 const styles = StyleSheet.create({
@@ -142,4 +142,4 @@ const styles = StyleSheet.create({
         marginBottom: theme.spacing.quarter,
         resizeMode: 'contain'
     }
-})
+});
