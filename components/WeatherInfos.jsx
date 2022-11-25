@@ -3,6 +3,7 @@ import React from 'react';
 import { View, Image, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useRoute } from '@react-navigation/native';
+import { getDayName, getHoursMinutes } from '../utils/utils';
 import theme from '../themes/default';
 
 export default function WeatherInfos(props) {
@@ -48,30 +49,6 @@ export default function WeatherInfos(props) {
             }
         </View>
     );
-}
-
-function getDayName(date) {
-    const a = new Date(date);
-    const days = [];
-    days[0] = 'Dim.';
-    days[1] = 'Lun.';
-    days[2] = 'Mar.';
-    days[3] = 'Mer.';
-    days[4] = 'Jeu.';
-    days[5] = 'Ven.';
-    days[6] = 'Sam.';
-    return days[a.getDay()];
-}
-
-function getHoursMinutes(datetime) {
-    const _datetime = new Date(datetime);
-    let hour = _datetime.getHours();
-    let minutes = _datetime.getMinutes();
-
-    hour = ('0' + hour).slice(-2);
-    minutes = ('0' + minutes).slice(-2);
-
-    return hour + ':' + minutes;
 }
 
 const styles = StyleSheet.create({
