@@ -27,7 +27,10 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
-    "eslint-plugin-react": "^7.31.10"
+    "@typescript-eslint/eslint-plugin": "^5.44.0",
+    "@typescript-eslint/parser": "^5.44.0",
+    "eslint": "^8.28.0",
+    "eslint-plugin-react": "^7.31.11"
   },
   "private": true
 }

@@ -1,9 +1,14 @@
 module.exports = {
     "env": {
         "browser": true,
-        "es2021": true
+        "es2021": true,
+        "node": true
     },
-    "extends": "plugin:react/recommended",
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:@typescript-eslint/recommended"
+    ],
     "overrides": [
     ],
     "parser": "@typescript-eslint/parser",
@@ -16,5 +21,7 @@ module.exports = {
         "@typescript-eslint"
     ],
     "rules": {
+        "semi": ["error", "always"],
+        "quotes": ["error", "double"]
     }
 }
