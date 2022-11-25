@@ -9,7 +9,7 @@ const Stack = createStackNavigator();
 export default function HomeStack() {
     return (
         <Stack.Navigator
-            defaultScreen='Home'
+            defaultScreen="Home"
             screenOptions={{
                 headerStyle: { backgroundColor: theme.colors.primary1 },
                 headerTintColor: theme.colors.white,

@@ -13,7 +13,10 @@ export default function WeatherInfos(props) {
         <View style={styles.container}>
             {route.name == 'Home' ?
                 <TouchableOpacity
-                    onPress={() => navigation.navigate('WeatherScreen', { date: props.date })}
+                    onPress={() => navigation.navigate('WeatherScreen', {
+                        screen: 'Feed',
+                        date: props.date
+                    })}
                     style={styles.weatherInfos}
                 >
                     <Text style={{ color: theme.colors.white }}>{getDayName(props.date)}</Text>
@@ -48,8 +51,8 @@ export default function WeatherInfos(props) {
 }
 
 function getDayName(date) {
-    let a = new Date(date);
-    let days = [];
+    const a = new Date(date);
+    const days = [];
     days[0] = 'Dim.';
     days[1] = 'Lun.';
     days[2] = 'Mar.';

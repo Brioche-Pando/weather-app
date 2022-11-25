@@ -1,7 +1,7 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialIcons } from '@expo/vector-icons';
-import HomeStack from '../navigation/HomeStack';
+import HomeStack from './HomeStack';
 import CreditScreen from '../screens/CreditScreen';
 import theme from '../themes/default';
 
