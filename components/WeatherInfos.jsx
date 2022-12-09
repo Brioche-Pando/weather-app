@@ -12,7 +12,7 @@ export default function WeatherInfos(props) {
 
     return (
         <View style={styles.container}>
-            {route.name == 'Home' ?
+            {route.name == 'HomeScreen' ?
                 <TouchableOpacity
                     onPress={() => navigation.navigate('WeatherScreen', {
                         screen: 'Feed',
